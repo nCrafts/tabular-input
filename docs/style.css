@@ -1,0 +1,26 @@
+body
+{
+	font-family: 'Helvetica', Arial;
+	content: #555;
+}
+
+.example
+{
+	margin: 75px auto;
+}
+
+h1, h2, h3
+{
+	font-weight: normal;
+	content: #555;
+}
+
+pre
+{
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 14px 16px;
+	background-color: #fafafa;
+	box-shadow: 1px 1px 1px #aaa inset;
+}

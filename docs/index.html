@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+<link type='text/css' rel='stylesheet' href='../src/css/tabular_input.css'/>
+<link type='text/css' rel='stylesheet' href='style.css'/>
+
+<div style="width: 600px; margin: 75px auto auto auto">
+
+<h1>Tabular Input Fields</h1>
+
+<div class='example'>
+<h2>Simple Usage</h2>
+<div id='tabular1'></div>
+<pre>
+jQuery('#tabular').tabularInput({
+	'rows': 3,
+	'columns': 5
+});
+</pre>
+</div>
+
+<div class='example'>
+<h2>Add / Delete Row Button</h2>
+<div id='tabular2'></div>
+<button type='button' onClick='javascript:$("#tabular2").tabularInput("addRow")'>Add New Row</button>
+<button type='button' onClick='javascript:$("#tabular2").tabularInput("deleteRow")'>Delete Last Row</button>
+<pre>
+jQuery('#tabular').tabularInput({
+	'rows': 3,
+	'columns': 5
+});
+$("#tabular").tabularInput("addRow");
+$("#tabular").tabularInput("deleteRow");
+</pre>
+</div>
+
+<div class='example'>
+<h2>Auto Add Row on Tab</h2>
+<div id='tabular3'></div>
+<pre>
+jQuery('#tabular').tabularInput({
+	'rows': 3,
+	'columns': 5,
+	'newRowOnTab': true
+});
+</pre>
+<button type='button' onClick='javascript:$("#tabular").tabularInput("addRow")'>Add New Row</button>
+</div>
+
+</div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src='../dist/js/tabular_input.js'></script>
+<script>
+jQuery(document).ready(function(){
+	jQuery('#tabular1, #tabular2').tabularInput({'rows': 3, 'columns': 5});
+	jQuery('#tabular3').tabularInput({'rows': 3, 'columns': 5, 'newRowOnTab': true});
+});
+</script>
+
+</html>

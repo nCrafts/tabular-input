@@ -1,0 +1,30 @@
+{
+  "name": "tabular_input",
+  "description": "A form input field",
+  "author": {
+    "name": "Nish",
+    "url": "https://github.com/ncrafts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git:github.com/nCrafts/tabular-input.git"
+  },
+  "keywords": [
+    "form",
+    "input",
+    "tabular"
+  ],
+  "license": "MIT",
+  "main": "dist/js/tabular.js",
+  "version": "0.0.1",
+  "devDependencies": {
+    "babel-core": "^6.7.6",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "6.3.13",
+    "babel-runtime": "^6.6.1",
+    "webpack": "^1.12.14"
+  },
+  "dependencies": {
+    
+  }
+}
