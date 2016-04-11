@@ -3,17 +3,18 @@
 
 <body>
 
-<link type='text/css' rel='stylesheet' href='../src/css/tabular_input.css'/>
+<link type='text/css' rel='stylesheet' href='../src/css/tabular-input.css'/>
 <link type='text/css' rel='stylesheet' href='style.css'/>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
 
-<div style="width: 600px; margin: 75px auto auto auto">
+<div style="width: 720px; margin: 75px auto auto auto">
 
 <h1>Tabular Input Fields</h1>
 
 <div class='example'>
 <h2>Simple Usage</h2>
 <div id='tabular1'></div>
-<pre>
+<pre class='javascript'>
 jQuery('#tabular').tabularInput({
 	'rows': 3,
 	'columns': 5
@@ -26,27 +27,66 @@ jQuery('#tabular').tabularInput({
 <div id='tabular2'></div>
 <button type='button' onClick='javascript:$("#tabular2").tabularInput("addRow")'>Add New Row</button>
 <button type='button' onClick='javascript:$("#tabular2").tabularInput("deleteRow")'>Delete Last Row</button>
-<pre>
+<pre class='javascript'>
 jQuery('#tabular').tabularInput({
 	'rows': 3,
-	'columns': 5
+	'columns': 5,
+	'animate': true
 });
-$("#tabular").tabularInput("addRow");
-$("#tabular").tabularInput("deleteRow");
+
+$("#tabular").tabularInput("addRow");			// Add a row at the end
+$("#tabular").tabularInput("deleteRow");			// Delete the last row
+$("#tabular").tabularInput("deleteRow", 2);		// Delete row at index 2
 </pre>
 </div>
 
 <div class='example'>
-<h2>Auto Add Row on Tab</h2>
+<h2>Add Row on Tab</h2>
+<p>Move to the last cell and press Tab</p>
 <div id='tabular3'></div>
-<pre>
+<pre class='javascript'>
 jQuery('#tabular').tabularInput({
 	'rows': 3,
 	'columns': 5,
-	'newRowOnTab': true
+	'newRowOnTab': true,
+	'animate': true
 });
 </pre>
-<button type='button' onClick='javascript:$("#tabular").tabularInput("addRow")'>Add New Row</button>
+</div>
+
+<div class='example'>
+<h2>Column Heads</h2>
+<div id='tabular4'></div>
+<pre class='javascript'>
+// Set them on initialisation
+jQuery('#tabular').tabularInput({
+	'rows': 3,
+	'columns': 3,
+	'columnHeads': ['Name', 'Age', 'Sex', 'Occupation']
+});
+
+// Or later
+jQuery('#tabular').tabularInput('setColumnHeads', ['Name', 'Age', 'Sex', 'Occupation']);
+</pre>
+</div>
+
+<div class='example'>
+<h2>Fetching and Setting Field Values</h2>
+<div id='tabular5'></div>
+<pre class='javascript'>
+// Set them on initialisation
+jQuery('#tabular').tabularInput({
+	'rows': 3,
+	'columns': 3,
+	'name': 'myField'
+});
+
+// Fetch value of first column, in the third row
+jQuery('[name="myField[0][2]"]').val();
+
+// Set value of second column, in the third row
+jQuery('[name="myField[1][2]"]').val('JavaScript');
+</pre>
 </div>
 
 </div>
@@ -54,11 +94,18 @@ jQuery('#tabular').tabularInput({
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src='../dist/js/tabular_input.js'></script>
+<script src='../dist/js/tabular-input.js'></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
 <script>
 jQuery(document).ready(function(){
-	jQuery('#tabular1, #tabular2').tabularInput({'rows': 3, 'columns': 5});
-	jQuery('#tabular3').tabularInput({'rows': 3, 'columns': 5, 'newRowOnTab': true});
+ 	jQuery('pre').each(function(i, block) {
+ 		hljs.highlightBlock(block);
+ 	});
+	jQuery('#tabular1').tabularInput({'rows': 3, 'columns': 5});
+	jQuery('#tabular2').tabularInput({'rows': 3, 'columns': 5, 'animate': true});
+	jQuery('#tabular3').tabularInput({'rows': 3, 'columns': 5, 'newRowOnTab': true, 'animate': true});
+	jQuery('#tabular4').tabularInput({'rows': 3, 'columns': 4, 'columnHeads': ['Name', 'Age', 'Sex', 'Occupation']});
+	jQuery('#tabular5').tabularInput({'rows': 3, 'columns': 5, 'name': 'myField'});	
 });
 </script>
 

@@ -2,25 +2,65 @@ body
 {
 	font-family: 'Helvetica', Arial;
 	content: #555;
+	font-size: .95em;
 }
 
 .example
 {
-	margin: 75px auto;
+	margin: 5em auto;
 }
 
 h1, h2, h3
 {
 	font-weight: normal;
-	content: #555;
+	color: #444;
 }
 
-pre
+button
 {
+	font-family: 'Helvetica', Arial;
+	box-shadow: none;
+	color: #555;
+	font-weight: 600;
+	font-size: .75em;
+	letter-spacing: .2px;
+	border: 1px solid #ccc;
+	padding: .9em 1.5em;
+	background-color: #fafafa;
+	border-radius: 2px;
+	cursor: pointer;
+	margin-right: 7px;
+	display: inline-block;
+	opacity: .95;
+}
+
+button:focus
+{
+	outline: none;
+}
+
+button:hover
+{
+	box-shadow: 0px 0px 4px #c9c9c9;
+	opacity: 1;
+}
+
+pre,
+pre.hljs
+{
+	font-size: 1.05em;
 	border-bottom: 1px solid #ddd;
 	border-right: 1px solid #ddd;
-	border-radius: 3px;
+	border-radius: 2px;
 	padding: 14px 16px;
-	background-color: #fafafa;
+	background-color: #f3f3f3;
 	box-shadow: 1px 1px 1px #aaa inset;
+	-moz-tab-size: 4;
+	-o-tab-size:   4;
+	tab-size:      4;
+}
+
+.tabularInput-table
+{
+	margin: 12px 0px;
 }

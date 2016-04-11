@@ -1,8 +1,8 @@
 module.exports = {
-    entry: "./src/js/tabular_input.js",
+    entry: "./src/js/tabular-input.js",
     output: {
         path: __dirname + "/dist/js/",
-        filename: "tabular_input.js"
+        filename: "tabular-input.js"
     },
     module: {
         loaders: [
