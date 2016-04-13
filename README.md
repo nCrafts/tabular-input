@@ -1,7 +1,8 @@
 # Tabular Input
 ## Intro
-One-line text fields in a tabular format, with support for dynamically adding rows.
+One-line text fields in a tabular format
 ## Examples and Usage
-[Here](http://ncrafts.github.io/tabular-input/)
+$('#myDiv').tabularInput({'rows': 3, 'columns': 5});
+[Read More Here](http://ncrafts.github.io/tabular-input/)
 ## License
 MIT License
