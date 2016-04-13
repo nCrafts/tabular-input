@@ -3,6 +3,9 @@ body
 	font-family: 'Helvetica', Arial;
 	content: #555;
 	font-size: .95em;
+	padding: 0px;
+	margin: 0px;
+	background-color: #fdfdfd;
 }
 
 .example
@@ -12,7 +15,73 @@ body
 
 h1, h2, h3
 {
-	font-weight: normal;
+	font-weight: 400;
+	color: #4f4f4f;
+}
+
+#h1-cover
+{
+	background-color: #f9f9f9;
+	border-bottom: 1px solid #e7e7e7;
+	width: 100%;
+	display: block;
+	padding: 50px 0;
+}
+h1
+{
+	margin: 0px auto;
+	color: #555;
+	font-size: 2em;
+	width: 720px;
+	display: block;
+}
+
+#footer
+{
+	border-top: 1px solid #e7e7e7;
+	text-align: center;
+	background-color: #f9f9f9;
+	font-size: .75em;
+	letter-spacing: .5px;
+	text-transform: uppercase;
+	padding: 25px 0px;
+	color: #777;
+	-webkit-font-smoothing: antialiased;
+	font-weight: 600;
+}
+#footer span
+{
+	display: inline-block;
+	margin: 0 15px;
+	position: relative;
+}
+#footer span:first-child
+{
+	display: block;
+	padding: 5px 0px;
+}
+#footer span:first-child:before,
+#footer span:nth-child(2):before
+{
+	content: none;
+}
+#footer span:before
+{
+	content: '.';
+	position: absolute;
+	color: #888;
+	top: -2px;
+	left: -19px;
+	font-size: 2em;
+}
+#footer a
+{
+	color: inherit;
+	line-height: 3em;
+	text-decoration: none;
+}
+#footer a:hover
+{
 	color: #444;
 }
 

@@ -3,13 +3,23 @@
 
 <body>
 
-<link type='text/css' rel='stylesheet' href='../dist/css/tabular-input.min.css'/>
+<link type='text/css' rel='stylesheet' href='tabular-input.min.css'/>
 <link type='text/css' rel='stylesheet' href='style.css'/>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
 
+<div id='h1-cover'>
+<h1>Tabular Input Fields</h1>
+</div>
+
 <div style="width: 720px; margin: 75px auto auto auto">
 
-<h1>Tabular Input Fields</h1>
+<div class='example'>
+<h2>Files</h2>
+<pre>
+&lt;script src=&#39;tabular-input.min.js&#39;&gt;&lt;/script&gt; (4.1 KB)
+&lt;link type=&#39;text/css&#39; rel=&#39;stylesheet&#39; href=&#39;tabular-input.min.css&#39;/&gt; (2 KB)
+</pre>
+</div>
 
 <div class='example'>
 <h2>Simple Usage</h2>
@@ -56,6 +66,7 @@ jQuery('#tabular').tabularInput({
 	'rows': 3,
 	'columns': 5,
 	'newRowOnTab': true,
+	'maxRows': 6,
 	'animate': true
 });
 </pre>
@@ -98,10 +109,17 @@ jQuery('[name="myField[1][2]"]').val('JavaScript');
 
 </div>
 
+<div id='footer'>
+<span>Suggestion and bug reports are most welcome</span>
+<span><a target='_blank' href='https://github.com/nCrafts/tabular-input/blob/master/LICENSE.md'>MIT License</a></span>
+<span><a target='_blank' href='http://github.com/ncrafts/tabular-input'>GitHub Repo</a></span>
+<span><a target='_blank' href='http://github.com/ncrafts/'>Author Profile</a></span>
+</div>
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src='../dist/js/tabular-input.min.js'></script>
+<script src='tabular-input.min.js'></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
 <script>
 jQuery(document).ready(function(){
@@ -110,7 +128,7 @@ jQuery(document).ready(function(){
  	});
 	jQuery('#tabular1').tabularInput({'rows': 3, 'columns': 5});
 	jQuery('#tabular2').tabularInput({'rows': 3, 'columns': 5, 'animate': true});
-	jQuery('#tabular3').tabularInput({'rows': 3, 'columns': 5, 'newRowOnTab': true, 'animate': true});
+	jQuery('#tabular3').tabularInput({'rows': 3, 'columns': 5, 'newRowOnTab': true, 'maxRows': 6, 'animate': true});
 	jQuery('#tabular4').tabularInput({'rows': 3, 'columns': 4, 'columnHeads': ['Name', 'Age', 'Sex', 'Occupation', 'a']});
 	jQuery('#tabular5').tabularInput({'rows': 3, 'columns': 5, 'name': 'myField'});
 });
