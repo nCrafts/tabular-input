@@ -9,7 +9,7 @@
 	}
 }
 
-@keyframes slideOut {
+@keyframes flipUp {
 	from {
 		transform: translate3d(0, 0, 0) scaleX(1) scaleY(1) rotateX(0deg);
 		opacity: 1;
@@ -34,6 +34,11 @@
 	width: 100%;
 }
 
+.tabularInput-table.animate td
+{
+	transition: width .1s;
+}
+
 .tabularInput-table td input
 {
 	margin: 0px 0 -1px 0;
@@ -49,6 +54,18 @@
 .tabularInput-table td:last-child
 {
 	border-right: 1px solid #ddd;
+}
+
+.tabularInput-table tr.animate-add td:last-child,
+.tabularInput-table tr.animate-remove td:last-child
+{
+	border-right-width: 0px;
+}
+
+.tabularInput-table tr.animate-add td:last-child input,
+.tabularInput-table tr.animate-remove td:last-child input
+{
+	border-right-width: 1px;
 }
 
 .tabularInput-table td input:focus
@@ -70,13 +87,13 @@
 .tabularInput-table.animate tr.animate-add input
 {
 	transform-origin: 0% 0%;
-	animation: flipDown .35s ease-in;
+	animation: flipDown .25s ease-in;
 }
 
 .tabularInput-table.animate tr.animate-remove input
 {
 	transform-origin: 0% 0%;
-	animation: slideOut .3s ease-in;	
+	animation: flipUp .25s ease-in;	
 }
 
 .tabularInput-table th

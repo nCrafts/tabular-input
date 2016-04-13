@@ -5,7 +5,8 @@
     },
     "env": {
         "browser": true,
-        "jquery": true
+        "jquery": true,
+        "node": true
     },
     "rules": {
         "comma-dangle": [2, "never"],

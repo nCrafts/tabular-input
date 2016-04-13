@@ -4,7 +4,6 @@ const tabularInput = (($) => {
 
 		constructor(element, config) {
 			this.config = config
-			this.rowCounter = config.rows
 			element.on('keydown', 'input', (e) => {
 				if (this.config.newRowOnTab === true && e.which === 9 && $(e.target).closest('tr').is(':last-child') && $(e.target).parent('td').is(':last-child')) {
 					this.addRow(element)
@@ -12,84 +11,135 @@ const tabularInput = (($) => {
 			})
 		}
 
+		addColumn(element) {
+			element.find('tbody tr').each((x, y) => {
+				$(y).find('td:last').after('<td><input type="text"/></td>')
+			})
+			this.config.columns++
+			this.setColumnHeads(element, this.config.columnHeads)
+			this.setName(element)
+			this.setWidth(element)
+		}
+
+		deleteColumn(element, _whichColumn) {
+			if (this.config.columns === 0) {
+				return
+			}
+			let whichColumn = typeof _whichColumn !== 'number' ? this.config.columns : _whichColumn + 1
+			element.find(`tr td:nth-child(${whichColumn})`).remove()
+			this.config.columns--
+			this.setName(element)
+			this.setWidth(element)
+		}
+
 		addRow(element) {
+			if (this.config.maxRows !== false && element.find('tbody tr').length >= this.config.maxRows) {
+				return
+			}
 			let newRowInputs = []
 			for (let a = 0; a < this.config.columns; a++) {
-				if (this.config.name === false) {
-					newRowInputs.push('<input type="text"/>')
-				} else {
-					newRowInputs.push(`<input type="text" name="${this.config.name}[${a}][${this.rowCounter}]"/>`)
-				}
+				newRowInputs.push('<input type="text"/>')
 			}
-			let newRowHTML = `<tr class='${this.config.animate === true ? 'animate-add' : ''}'><td style='width: ${this.config.cellWidth}%'>${newRowInputs.join('</td><td>')}</td></tr>`
+			let newRowHTML = `<tr class='${this.config.animate === true ? 'animate-add' : ''}'><td>${newRowInputs.join('</td><td>')}</td></tr>`
 			element.find('tr:last').after(newRowHTML)
-			this.rowCounter++
+			this.setName(element)
 			setTimeout(() => {
 				element.find('.animate-add').removeClass('animate-add')
-			}, 500)
+			}, 250)
 		}
 
 		deleteRow(element, _whichRow) {
-			let whichRow = typeof _whichRow === 'undefined' ? element.find('tr').length - 1 : _whichRow
+			let whichRow =  _whichRow || element.find('tr').length - 1
 			element.find('tr').eq(whichRow).addClass('animate-remove')
 			if (this.config.animate === false) {
 				element.find('tr.animate-remove').remove()
 			} else {
 				setTimeout(() => {
 					element.find('tr.animate-remove').remove()
-				}, 300)
+				}, 250)
 			}
 		}
 
+		maxRows(element, maxRows) {
+			if (typeof maxRows !== 'number') {
+				return
+			}
+			this.config.maxRows = maxRows
+		}
+
 		setColumnHeads(element, heads) {
-			let headsHTML = heads.map((x) => `<th>${x}</th>`).join()
+			if (typeof heads !== 'object') {
+				return
+			}
+			this.config.columnHeads = true
+			while (heads.length < this.config.columns) {
+				heads.push('')
+			}
+			let headsHTML = heads.map((x) => `<th>${x}</th>`).slice(0, this.config.columns).join()
 			element.find('thead').html(`<tr>${headsHTML}</tr>`)
+		}
+
+		setName(element) {
+			if (this.config.name === false) {
+				return
+			}
+			element.find('tr').each((x, tr) => {
+				$(tr).find('td').each((y, td) => {
+					$(td).find('input').attr('name', `${this.config.name}[${y}][${x}]`)
+				})
+			})
+		}
+
+		setWidth(element) {
+			let width = `${(100 / this.config.columns).toFixed(2)}%`
+			element.find('td').css('width', width)
+			if (element.find('th').length > 0) {
+				element.find('th').css('width', width)
+			}
+		}
+
+		destroy(element) {
+			element.find('.tabularInput-table').remove()
 		}
 
 		static jQueryInterface(_config, extraArgument) {
 
-			if (typeof _config === 'string' && typeof this.data().tabularObject[_config] === 'function') {
-				this.data().tabularObject[_config](this, extraArgument)
-				return
-			}
-
-			let config = $.extend({
-				rows: 2,
-				columns: 4,
-				name: false,
-				newRowOnTab: false,
-				columnHeads: false,
-				animate: false
-			}, _config)
-
-			config.cellWidth = 100 / config.columns
-
-			let currentRow = 0
-			let allRowsArray = []
-
-			while (currentRow < config.rows) {
-				let currentRowInputs = []
-				for (let a = 0; a < config.columns; a++) {
-					if (config.name === false) {
-						currentRowInputs.push('<input type="text"/>')
-					} else {
-						currentRowInputs.push(`<input type="text" name="${config.name}[${a}][${currentRow}]"/>`)
-					}
+			return this.each(() => {
+				if (typeof _config === 'string' && typeof this.data().tabularObject[_config] === 'function') {
+					this.data().tabularObject[_config](this, extraArgument)
+					return
 				}
-				allRowsArray.push(`<tr><td style='width: ${config.cellWidth}%'>${currentRowInputs.join('</td><td>')}</td></tr>`)
-				currentRow++
-			}
 
-			this.html($(`<table width="100%" cellspacing="0" cellpadding="0" class="tabularInput-table ${config.animate ? 'animate' : ''}"></table>`).html(`<thead></thead><tbody>${allRowsArray.join()}</tbody>`))
-			let tabularObject = new tabularInput(this, config)
+				let config = $.extend({
+					rows: 2,
+					columns: 4,
+					name: false,
+					newRowOnTab: false,
+					columnHeads: false,
+					animate: false,
+					maxRows: false
+				}, _config)
 
-			if (config.columnHeads !== false) {
-				config.columnHeads = typeof config.columnHeads === 'undefined' ? ' column'.repeat(config.columns).split(' ').splice(1) : config.columnHeads
+				let currentRow = 0
+				let allRowsArray = []
+
+				while (currentRow < config.rows) {
+					let currentRowInputs = []
+					for (let a = 0; a < config.columns; a++) {
+						currentRowInputs.push('<input type="text"/>')
+					}
+					allRowsArray.push(`<tr row-index='${currentRow}'><td>${currentRowInputs.join('</td><td>')}</td></tr>`)
+					currentRow++
+				}
+
+				this.html($(`<table width="100%" cellspacing="0" cellpadding="0" class="tabularInput-table ${config.animate ? 'animate' : ''}"></table>`).html(`<thead></thead><tbody>${allRowsArray.join()}</tbody>`))
+				let tabularObject = new tabularInput(this, config)
+
 				tabularObject.setColumnHeads(this, config.columnHeads)
-			}
-
-			this.data('tabularObject', tabularObject)
-
+				tabularObject.setName(this)
+				tabularObject.setWidth(this)
+				this.data('tabularObject', tabularObject)
+			})
 		}
 	}
 

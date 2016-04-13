@@ -7,9 +7,19 @@
 <link type='text/css' rel='stylesheet' href='style.css'/>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
 
+<div id='h1-cover'>
+<h1>Tabular Input Fields</h1>
+</div>
+
 <div style="width: 720px; margin: 75px auto auto auto">
 
-<h1>Tabular Input Fields</h1>
+<div class='example'>
+<h2>Files</h2>
+<pre>
+&lt;script src=&#39;../dist/js/tabular-input.min.js&#39;&gt;&lt;/script&gt; (4.1 KB)
+&lt;link type=&#39;text/css&#39; rel=&#39;stylesheet&#39; href=&#39;../dist/css/tabular-input.min.css&#39;/&gt; (2 KB)
+</pre>
+</div>
 
 <div class='example'>
 <h2>Simple Usage</h2>
@@ -25,8 +35,12 @@ jQuery('#tabular').tabularInput({
 <div class='example'>
 <h2>Add / Delete Row Button</h2>
 <div id='tabular2'></div>
+<div class='btn-group'>
 <button type='button' onClick='javascript:$("#tabular2").tabularInput("addRow")'>Add New Row</button>
 <button type='button' onClick='javascript:$("#tabular2").tabularInput("deleteRow")'>Delete Last Row</button>
+<button type='button' onClick='javascript:$("#tabular2").tabularInput("addColumn")'>Add New Column</button>
+<button type='button' onClick='javascript:$("#tabular2").tabularInput("deleteColumn")'>Delete Last Column</button>
+</div>
 <pre class='javascript'>
 jQuery('#tabular').tabularInput({
 	'rows': 3,
@@ -37,6 +51,9 @@ jQuery('#tabular').tabularInput({
 $("#tabular").tabularInput("addRow");			// Add a row at the end
 $("#tabular").tabularInput("deleteRow");			// Delete the last row
 $("#tabular").tabularInput("deleteRow", 2);		// Delete row at index 2
+
+$("#tabular").tabularInput("addColumn");			// Add a column at the end
+$("#tabular").tabularInput("deleteColumn");		// Delete the last column
 </pre>
 </div>
 
@@ -49,6 +66,7 @@ jQuery('#tabular').tabularInput({
 	'rows': 3,
 	'columns': 5,
 	'newRowOnTab': true,
+	'maxRows': 6,
 	'animate': true
 });
 </pre>
@@ -91,6 +109,13 @@ jQuery('[name="myField[1][2]"]').val('JavaScript');
 
 </div>
 
+<div id='footer'>
+<span>Suggestion and bug reports are most welcome</span>
+<span><a target='_blank' href='https://github.com/nCrafts/tabular-input/blob/master/LICENSE.md'>MIT License</a></span>
+<span><a target='_blank' href='http://github.com/ncrafts/tabular-input'>GitHub Repo</a></span>
+<span><a target='_blank' href='http://github.com/ncrafts/'>Author Profile</a></span>
+</div>
+
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -103,9 +128,9 @@ jQuery(document).ready(function(){
  	});
 	jQuery('#tabular1').tabularInput({'rows': 3, 'columns': 5});
 	jQuery('#tabular2').tabularInput({'rows': 3, 'columns': 5, 'animate': true});
-	jQuery('#tabular3').tabularInput({'rows': 3, 'columns': 5, 'newRowOnTab': true, 'animate': true});
-	jQuery('#tabular4').tabularInput({'rows': 3, 'columns': 4, 'columnHeads': ['Name', 'Age', 'Sex', 'Occupation']});
-	jQuery('#tabular5').tabularInput({'rows': 3, 'columns': 5, 'name': 'myField'});	
+	jQuery('#tabular3').tabularInput({'rows': 3, 'columns': 5, 'newRowOnTab': true, 'maxRows': 6, 'animate': true});
+	jQuery('#tabular4').tabularInput({'rows': 3, 'columns': 4, 'columnHeads': ['Name', 'Age', 'Sex', 'Occupation', 'a']});
+	jQuery('#tabular5').tabularInput({'rows': 3, 'columns': 5, 'name': 'myField'});
 });
 </script>
 

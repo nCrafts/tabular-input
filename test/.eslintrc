@@ -1,0 +1,14 @@
+{
+    "env": {
+        "browser": true,
+        "jquery": true,
+        "node": true,
+        "mocha": true,
+        "jasmine": true
+    },
+    "rules": {
+        "no-native-reassign": 0,
+        "no-var": 0,
+        "no-unused-vars": 0
+    }
+}
