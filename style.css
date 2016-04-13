@@ -34,6 +34,32 @@ button
 	opacity: .95;
 }
 
+.btn-group
+{
+	letter-spacing: -4px;
+}
+
+.btn-group button
+{
+	margin-right: 0px;
+	letter-spacing: 0px;
+	border-radius: 0px;
+	border-right-width: 0px;
+}
+
+.btn-group button:last-child
+{
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	border-right-width: 1px;
+}
+
+.btn-group button:first-child
+{
+	border-top-left-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+
 button:focus
 {
 	outline: none;
