@@ -6,6 +6,7 @@ const tabularInput = (($) => {
 			this.config = config
 			element.on('keydown', 'input', (e) => {
 				if (this.config.newRowOnTab === true && e.which === 9 && $(e.target).closest('tr').is(':last-child') && $(e.target).parent('td').is(':last-child')) {
+				  e.preventDefault()					
 					this.addRow(element)
 				}
 			})
@@ -43,6 +44,7 @@ const tabularInput = (($) => {
 			let newRowHTML = `<tr class='${this.config.animate === true ? 'animate-add' : ''}'><td>${newRowInputs.join('</td><td>')}</td></tr>`
 			element.find('tr:last').after(newRowHTML)
 			this.setName(element)
+			element.find('tr:last td:first input').focus()
 			setTimeout(() => {
 				element.find('.animate-add').removeClass('animate-add')
 			}, 250)
